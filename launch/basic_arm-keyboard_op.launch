@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<launch>
+  <node name="keyboard_control" 
+		pkg="robots" 
+		type="keyboard_control"  
+		output="screen">
+  </node>
+</launch>

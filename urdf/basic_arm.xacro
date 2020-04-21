@@ -1,0 +1,460 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="basic_arm" xmlns:xacro="http://ros.org/wiki/xacro">
+
+   <xacro:macro name="transmission_block" params="joint_name">
+	  <transmission name="tran1">
+	    <type>transmission_interface/SimpleTransmission</type>
+	    <joint name="${joint_name}">
+	      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+	    </joint>
+	    <actuator name="motor1">
+	      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+	      <mechanicalReduction>1</mechanicalReduction>
+	    </actuator>
+	  </transmission>
+   </xacro:macro>
+
+  <link name="world"/>
+ 
+  <link 
+		name="base_link">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="9.5931" />
+      <inertia
+        ixx="0.10354"
+        ixy="1.5247E-17"
+        ixz="9.5845E-18"
+        iyy="0.319"
+        iyz="3.811E-18"
+        izz="0.40885" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/basic_arm/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/basic_arm/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <gazebo reference="base_link">
+    <material>Gazebo/Green</material>
+  </gazebo>
+
+  <joint 
+		name="fixed" type="fixed">
+	<parent link="world"/>
+	<child link="base_link"/>
+  </joint>
+  	
+  <link 
+		name="arm_0">
+    <inertial>
+      <origin
+        xyz="-3.8604E-17 0.15437 9.8794E-18"
+        rpy="0 0 0" />
+      <mass
+        value="1.8301" />
+      <inertia
+        ixx="0.01625"
+        ixy="7.6393E-19"
+        ixz="0"
+        iyy="0.0030443"
+        iyz="-6.1116E-19"
+        izz="0.01632" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/basic_arm/arm_0.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 0 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/basic_arm/arm_0.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <gazebo reference="arm_0">
+    <material>Gazebo/Yellow</material>
+  </gazebo>
+  
+  <joint
+    name="arm_0_joint"
+    type="revolute">
+    <origin
+      xyz="0 0 0.1"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="arm_0" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-3.14"
+      upper="3.13"
+      effort="300"
+      velocity="1" />
+    <dynamics
+      damping="50"
+      friction="1" />
+  </joint>
+  
+  <link
+    name="pin">
+    <inertial>
+      <origin
+        xyz="-2.6143E-06 5.5511E-17 1.2143E-15"
+        rpy="0 0 0" />
+      <mass
+        value="0.014701" />
+      <inertia
+        ixx="7.3244E-07"
+        ixy="-8.3088E-23"
+        ixz="1.0059E-21"
+        iyy="1.2513E-05"
+        iyz="1.1563E-25"
+        izz="1.2513E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/basic_arm/pin.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.25098 0.25098 0.25098 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/basic_arm/pin.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <gazebo reference="pin">
+    <material>Gazebo/Black</material>
+  </gazebo>
+  
+  <joint
+    name="pin_joint"
+    type="fixed">
+    <origin
+      xyz="0 0.34 0"
+      rpy="-3.1416 0 -3.1416" />
+    <parent
+      link="arm_0" />
+    <child
+      link="pin" />
+  </joint>
+  
+  <link
+    name="arm_1">
+    <inertial>
+      <origin
+        xyz="-5.2292E-16 -0.0077891 -0.1177"
+        rpy="0 0 0" />
+      <mass
+        value="0.48851" />
+      <inertia
+        ixx="0.0018179"
+        ixy="-4.0658E-20"
+        ixz="-8.1315E-20"
+        iyy="0.001977"
+        iyz="-0.00010636"
+        izz="0.00037683" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/basic_arm/arm_1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 0 0 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/basic_arm/arm_1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <gazebo reference="arm_1">
+    <material>Gazebo/Red</material>
+  </gazebo>
+  
+  <joint
+    name="arm_1_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.34 0"
+      rpy="-3.0083 0 -3.1416" />
+    <parent
+      link="arm_0" />
+    <child
+      link="arm_1" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.2"
+      upper="3.2"
+      effort="300"
+      velocity="1" />
+    <dynamics
+      damping="50"
+      friction="1" />
+  </joint>
+  
+  <link
+    name="gripper_base">
+    <inertial>
+      <origin
+        xyz="-0.0072199 -7.9936E-15 -0.00037706"
+        rpy="0 0 0" />
+      <mass
+        value="0.015527" />
+      <inertia
+        ixx="3.5572E-06"
+        ixy="2.369E-21"
+        ixz="9.635E-21"
+        iyy="8.5569E-06"
+        iyz="2.2764E-21"
+        izz="1.1986E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/basic_arm/gripper_base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/basic_arm/gripper_base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <gazebo reference="gripper_base">
+    <material>Gazebo/Red</material>
+  </gazebo> 
+  
+  <joint
+    name="gripper_base_joint"
+    type="fixed">
+    <origin
+      xyz="0.0072199 -0.014725 -0.22251"
+      rpy="-0.066081 0 0" />
+    <parent
+      link="arm_1" />
+    <child
+      link="gripper_base" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  
+  <link
+    name="gripper_hand_fix">
+    <inertial>
+      <origin
+        xyz="-0.013549 0.00068659 0.026407"
+        rpy="0 0 0" />
+      <mass
+        value="0.0024646" />
+      <inertia
+        ixx="5.7131E-07"
+        ixy="1.205E-08"
+        ixz="-4.3659E-08"
+        iyy="8.0849E-07"
+        iyz="2.2124E-09"
+        izz="3.1493E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/basic_arm/gripper_hand_fix.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/basic_arm/gripper_hand_fix.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <gazebo reference="gripper_hand_fix">
+    <material>Gazebo/Blue</material>
+  </gazebo>
+  
+  <joint
+    name="gripper_hand_fix"
+    type="fixed">
+    <origin
+      xyz="0.02278 0 0"
+      rpy="-3.1416 0 3.091" />
+    <parent
+      link="gripper_base" />
+    <child
+      link="gripper_hand_fix" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  
+  <link
+    name="gripper_hand_move">
+    <inertial>
+      <origin
+        xyz="-0.013549 -0.00068659 -0.026407"
+        rpy="0 0 0" />
+      <mass
+        value="0.0024646" />
+      <inertia
+        ixx="5.7131E-07"
+        ixy="-1.205E-08"
+        ixz="4.3659E-08"
+        iyy="8.0849E-07"
+        iyz="2.2124E-09"
+        izz="3.1493E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/basic_arm/gripper_hand_move.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/basic_arm/gripper_hand_move.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <gazebo reference="gripper_hand_move">
+    <material>Gazebo/Blue</material>
+  </gazebo>  
+  
+  <joint
+    name="gripper_hand_move_joint"
+    type="prismatic">
+    <origin
+      xyz="-0.03722 0 0"
+      rpy="0 0 -0.050632" />
+    <parent
+      link="gripper_base" />
+    <child
+      link="gripper_hand_move" />
+    <axis
+      xyz="0.99872 0.05061 0" />
+    <limit
+      lower="0"
+      upper="0.045"
+      effort="50"
+      velocity="0.5" />
+    <dynamics
+      damping="30"
+      friction="0.5" />
+  </joint> 
+  
+  <!-- ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+  <!-- Transmissions for ROS Control -->
+
+   <xacro:transmission_block joint_name="arm_0_joint"/>
+   <xacro:transmission_block joint_name="arm_1_joint"/>
+   <xacro:transmission_block joint_name="gripper_hand_move_joint"/>
+  
+   <!-- ros_control plugin -->
+   <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/robots/basic_arm</robotNamespace>
+    </plugin>
+   </gazebo>
+  
+</robot>

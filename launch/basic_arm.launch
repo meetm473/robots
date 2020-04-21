@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+
+<launch>
+  
+  <arg name="model" default="$(find robots)/urdf/basic_arm.xacro"/>
+  
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(arg model)" />
+  
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find robots)/config/basic_arm/joint_controllers.yaml"
+			command="load"/>
+
+  <!-- push robot_description to factory and spawn robot in gazebo -->
+  <node name="urdf_spawner" 
+		pkg="gazebo_ros" 
+		type="spawn_model"
+		respawn="false" 
+        output="screen"
+        args="-z 1.0 -urdf -model robot -param robot_description"/>
+
+   <node name="controller_spawner" 
+		 pkg="controller_manager" 
+		 type="spawner"
+		 respawn="false"
+		 output="screen" 
+		 ns="/robots/basic_arm" 
+		 args="joint_state_controller
+			arm_0_pos_controller
+			arm_1_pos_controller
+			gripper_hand_pos_controller"/>
+
+  <!-- start robot state publisher -->
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" output="screen" >
+    <param name="publish_frequency" type="double" value="50.0" />
+  </node>
+
+</launch>
+

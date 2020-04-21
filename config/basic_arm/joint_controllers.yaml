@@ -1,0 +1,19 @@
+robots:
+  basic_arm:
+# Publish all joint states -----------------------------------
+    joint_state_controller:
+      type: joint_state_controller/JointStateController
+      publish_rate: 50
+# Position Controllers ---------------------------------------
+    arm_0_pos_controller:
+      type: position_controllers/JointPositionController
+      joint: arm_0_joint
+      pid: {p: 100.0, i: 0.01, d: 10.0}
+    arm_1_pos_controller:
+      type: position_controllers/JointPositionController
+      joint: arm_1_joint
+      pid: {p: 100.0, i: 0.01, d: 10.0}
+    gripper_hand_pos_controller:
+      type: position_controllers/JointPositionController
+      joint: gripper_hand_move_joint
+      pid: {p: 100.0, i: 0.01, d: 10.0}

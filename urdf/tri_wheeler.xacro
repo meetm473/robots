@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot name="tri-wheeler">
+  <link name="dummy"></link>  
+  <link  name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.00568396213062751 -5.42112930590219E-20 2.4427701852326E-18"
+        rpy="0 0 0" />
+      <mass
+        value="1.54430829947819" />
+      <inertia
+        ixx="0.00210885922475386"
+        ixy="1.04050876056175E-20"
+        ixz="9.55463165122595E-23"
+        iyy="0.00685492006957841"
+        iyz="1.53740241013503E-20"
+        izz="0.00497749146060696" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/tri_wheeler/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/tri_wheeler/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="dummy_joint" type="fixed">
+	<parent
+      link="dummy" />
+    <child
+      link="base_link" />
+  </joint>
+  <link  name="rear_wheel_L">
+    <inertial>
+      <origin
+        xyz="0 -3.0786E-50 -0.0075"
+        rpy="0 0 0" />
+      <mass
+        value="0.33489" />
+      <inertia
+        ixx="8.1589E-05"
+        ixy="-9.5649E-53"
+        ixz="-8.3645E-22"
+        iyy="8.1589E-05"
+        iyz="-1.3852E-37"
+        izz="0.00015063" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/tri_wheeler/rear_wheel_L.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.64706 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/tri_wheeler/rear_wheel_L.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rear_wheel_L_joint" type="continuous">
+    <origin
+      xyz="-0.085 0.06 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear_wheel_L" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="30"
+      velocity="100" />
+  </joint>
+  <link  name="rear_wheel_R">
+    <inertial>
+      <origin
+        xyz="2.4286E-17 0 0.0075"
+        rpy="0 0 0" />
+      <mass
+        value="0.33489" />
+      <inertia
+        ixx="8.1589E-05"
+        ixy="5.0822E-21"
+        ixz="1.8509E-21"
+        iyy="8.1589E-05"
+        iyz="2.1655E-22"
+        izz="0.00015063" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/tri_wheeler/rear_wheel_R.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.64706 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/tri_wheeler/rear_wheel_R.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rear_wheel_R_joint" type="continuous">
+    <origin
+      xyz="-0.085 -0.06 0"
+      rpy="-1.5708 -1.3335 3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="rear_wheel_R" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      effort="30"
+      velocity="100" />
+  </joint>
+  <link  name="front_wheel">
+    <inertial>
+      <origin
+        xyz="0 0 -8.4803E-18"
+        rpy="0 0 0" />
+      <mass
+        value="0.54264" />
+      <inertia
+        ixx="0.00013955"
+        ixy="0"
+        ixz="-1.7081E-37"
+        iyy="0.00013955"
+        iyz="-4.0164E-37"
+        izz="0.00019774" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/tri_wheeler/front_wheel.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.64706 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/tri_wheeler/front_wheel.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="front_wheel_joint" type="continuous">
+    <origin
+      xyz="0.07 0 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="front_wheel" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      effort="30"
+      velocity="100" />
+  </joint>
+  
+  <!-- Transmission is important to link the joints and the controller -->
+    <transmission name="rear_wheel_L_joint_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="rear_wheel_L_joint" />
+      <actuator name="rear_wheel_L_joint_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+    
+    <transmission name="rear_wheel_R_joint_trans">
+      <type>transmission_interface/SimpleTransmission</type>
+      <joint name="rear_wheel_R_joint" />
+      <actuator name="rear_wheel_R_joint_motor">
+        <hardwareInterface>EffortJointInterface</hardwareInterface>
+        <mechanicalReduction>1</mechanicalReduction>
+      </actuator>
+    </transmission>
+
+  <!-- Differential drive controller  -->
+  <gazebo>
+    <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
+      <legacyMode>true</legacyMode>
+      <rosDebugLevel>Debug</rosDebugLevel>
+      <publishWheelTF>false</publishWheelTF>
+      <robotNamespace>/</robotNamespace>
+      <publishTf>1</publishTf>
+      <publishWheelJointState>false</publishWheelJointState>
+      <alwaysOn>true</alwaysOn>
+      <updateRate>100.0</updateRate>
+      <leftJoint>rear_wheel_L_joint</leftJoint>
+      <rightJoint>rear_wheel_R_joint</rightJoint>
+      <wheelSeparation>0.12</wheelSeparation>
+      <wheelDiameter>0.06</wheelDiameter>
+      <broadcastTF>1</broadcastTF>
+      <wheelTorque>30</wheelTorque>
+      <wheelAcceleration>0.8</wheelAcceleration>
+      <commandTopic>cmd_vel</commandTopic>
+      <odometryFrame>odom</odometryFrame> 
+      <odometryTopic>odom</odometryTopic> 
+      <robotBaseFrame>dummy</robotBaseFrame>
+    </plugin>
+  </gazebo> 
+  
+  
+</robot>
