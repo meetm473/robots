@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<robot
+  name="prismatic_revolute_test">
+  
+ 
+  <link name="world"/>
+  
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.00924680398009799 0.00104160031150692 0.0422256273136482"
+        rpy="0 0 0" />
+      <mass
+        value="7.5481740008968" />
+      <inertia
+        ixx="0.00906108134512229"
+        ixy="-0.000174911171286187"
+        ixz="-0.000420717184081215"
+        iyy="0.0482241089727205"
+        iyz="1.49374376500163E-05"
+        izz="0.0466921544163068" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/prismatic_revolute_test/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/prismatic_revolute_test/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="fixed" type="fixed">
+	<parent link="world"/>
+	<child link="base_link"/>  
+  </joint>
+  
+  <link
+    name="linear">
+    <inertial>
+      <origin
+        xyz="0.10425 0.00026399 0.00021329"
+        rpy="0 0 0" />
+      <mass
+        value="3.2837" />
+      <inertia
+        ixx="0.0010201"
+        ixy="2.342E-20"
+        ixz="1.8737E-19"
+        iyy="0.012482"
+        iyz="-2.6529E-07"
+        izz="0.012481" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/prismatic_revolute_test/linear.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.64706 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/prismatic_revolute_test/linear.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint
+    name="linear_joint"
+    type="prismatic">
+    <origin
+      xyz="-0.085 -0.00010501 0.034788"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="linear" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="0"
+      upper="0.18"
+      effort="30"
+      velocity="1" />
+  </joint>
+  
+  <link
+    name="rotation">
+    <inertial>
+      <origin
+        xyz="0.00030237 0.011805 7.3558E-06"
+        rpy="0 0 0" />
+      <mass
+        value="0.0078672" />
+      <inertia
+        ixx="4.8013E-07"
+        ixy="4.2764E-24"
+        ixz="1.9852E-23"
+        iyy="3.0575E-07"
+        iyz="-1.5642E-12"
+        izz="4.8172E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/prismatic_revolute_test/rotation.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.64706 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/prismatic_revolute_test/rotation.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+  <joint
+    name="rotation_joint"
+    type="revolute">
+    <origin
+      xyz="-0.095027 0 0.082"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rotation" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0"
+      upper="1.5708"
+      effort="30"
+      velocity="1" />
+    <mimic
+      joint="linear_joint"
+      multiplier="8.72666666667"
+      offset="0" />
+  </joint>
+  
+</robot>

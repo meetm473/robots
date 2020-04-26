@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<robot
+  name="claw">
+  
+  <link name="world"/>
+  
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-1.53567078563934E-16 1.27659406015648E-16 -0.0038047544848005"
+        rpy="0 0 0" />
+      <mass
+        value="14.2315320588481" />
+      <inertia
+        ixx="0.147608042754936"
+        ixy="4.79981990091153E-16"
+        ixz="-5.65036739485358E-17"
+        iyy="0.147608042754937"
+        iyz="2.48926524982492E-17"
+        izz="0.226294089634963" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint name="fixed" type="fixed">
+	<parent link="world"/>
+	<child link="base_link"/>  
+  </joint>
+  
+  <link
+    name="finger_a">
+    <inertial>
+      <origin
+        xyz="0.0390359916352672 -0.118859916128799 -2.77555756156289E-16"
+        rpy="0 0 0" />
+      <mass
+        value="5.8379618805716" />
+      <inertia
+        ixx="0.0430554980468734"
+        ixy="0.00387716715251265"
+        ixz="-5.20417042793042E-18"
+        iyy="0.00809595707264626"
+        iyz="2.53432257818487E-17"
+        izz="0.0494994685365442" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/finger_a.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/finger_a.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint
+    name="finger_a_joint"
+    type="revolute">
+    <origin
+      xyz="-0.15588 -0.09 -0.15"
+      rpy="1.5708 0.01598 0.5236" />
+    <parent
+      link="base_link" />
+    <child
+      link="finger_a" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5708"
+      upper="0.15"
+      effort="30"
+      velocity="1" />
+    <mimic
+      joint="rod_joint"
+      multiplier="3"
+      offset="0" />
+  </joint>
+  
+  <link
+    name="finger_b">
+    <inertial>
+      <origin
+        xyz="0.0390359916355864 -0.118859916128943 -2.44942954807925E-15"
+        rpy="0 0 0" />
+      <mass
+        value="5.8379618805716" />
+      <inertia
+        ixx="0.0430554980468635"
+        ixy="0.00387716715255743"
+        ixz="3.46944695195361E-18"
+        iyy="0.00809595707265621"
+        iyz="8.13151629364128E-18"
+        izz="0.0494994685365442" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/finger_b.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/finger_b.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint
+    name="finger_b_joint"
+    type="revolute">
+    <origin
+      xyz="0.15588 -0.09 -0.15"
+      rpy="1.5708 0.01598 2.618" />
+    <parent
+      link="base_link" />
+    <child
+      link="finger_b" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5708"
+      upper="0.15"
+      effort="30"
+      velocity="1" />
+    <mimic
+      joint="rod_joint"
+      multiplier="3"
+      offset="0" />
+  </joint>
+  
+  <link
+    name="finger_c">
+    <inertial>
+      <origin
+        xyz="0.03903599163533 -0.11885991612886 -9.56495999594962E-18"
+        rpy="0 0 0" />
+      <mass
+        value="5.83796188057159" />
+      <inertia
+        ixx="0.0430554980468729"
+        ixy="0.00387716715251506"
+        ixz="4.88121916477368E-19"
+        iyy="0.00809595707264681"
+        iyz="1.26361575054972E-18"
+        izz="0.0494994685365442" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/finger_c.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/finger_c.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint
+    name="finger_c_joint"
+    type="revolute">
+    <origin
+      xyz="0 0.18 -0.15"
+      rpy="1.5708 0.01598 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="finger_c" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1.5708"
+      upper="0.15"
+      effort="30"
+      velocity="1" />
+    <mimic
+      joint="rod_joint"
+      multiplier="3"
+      offset="0" />
+  </joint>
+  
+  <link
+    name="rod">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="0" />
+      <inertia
+        ixx="0"
+        ixy="0"
+        ixz="0"
+        iyy="0"
+        iyz="0"
+        izz="0" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/rod.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/rod.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint
+    name="rod_joint"
+    type="prismatic">
+    <origin
+      xyz="0 0 0"
+      rpy="1.5708 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rod" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="0.05"
+      upper="-0.15"
+      effort="30"
+      velocity="1" />
+  </joint>
+  
+  <link
+    name="moving_base">
+    <inertial>
+      <origin
+        xyz="1.40630922126461E-15 0.0199999999998497 -6.57442263708274E-16"
+        rpy="0 0 0" />
+      <mass
+        value="3.66414183414919" />
+      <inertia
+        ixx="0.0072055452249317"
+        ixy="2.26087854114052E-19"
+        ixz="3.28399160889535E-17"
+        iyy="0.0134434480451304"
+        iyz="2.79163530569318E-19"
+        izz="0.00720554522493167" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/moving_base.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/moving_base.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint
+    name="moving_base_joint"
+    type="fixed">
+    <origin
+      xyz="0 -0.10933 0"
+      rpy="0 0 0" />
+    <parent
+      link="rod" />
+    <child
+      link="moving_base" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  
+  <link
+    name="finger_a_support">
+    <inertial>
+      <origin
+        xyz="0.016488 -0.031374 -0.021066"
+        rpy="0 0 0" />
+      <mass
+        value="0.46607" />
+      <inertia
+        ixx="0.00031785"
+        ixy="0.00015576"
+        ixz="6.9832E-05"
+        iyy="0.00019234"
+        iyz="-8.9929E-05"
+        izz="0.00039848" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/finger_a_support.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.64706 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/finger_a_support.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint
+    name="finger_a_support_joint"
+    type="fixed">
+    <origin
+      xyz="-0.081292 0.02 0.058481"
+      rpy="0 0 0" />
+    <parent
+      link="moving_base" />
+    <child
+      link="finger_a_support" />
+    <axis
+      xyz="0.5 0 0.86603" />
+    <limit
+      lower="-3.14"
+      upper="1.5078"
+      effort="30"
+      velocity="1" />
+  </joint>
+  
+  <link
+    name="finger_b_support">
+    <inertial>
+      <origin
+        xyz="0.0264880034316608 -0.0313744207600376 0.00374585052777678"
+        rpy="0 0 0" />
+      <mass
+        value="0.466065036871758" />
+      <inertia
+        ixx="0.000317845436466084"
+        ixy="0.000155761107485711"
+        ixz="-6.98321301226401E-05"
+        iyy="0.000192341398955658"
+        iyz="8.99287173361822E-05"
+        izz="0.000398480634714818" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/finger_b_support.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.647058823529412 0.619607843137255 0.588235294117647 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/finger_b_support.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint
+    name="finger_b_support_joint"
+    type="fixed">
+    <origin
+      xyz="0.091292 0.02 0.04116"
+      rpy="-3.1416 0 3.1416" />
+    <parent
+      link="moving_base" />
+    <child
+      link="finger_b_support" />
+    <axis
+      xyz="0.5 0 -0.86603" />
+    <limit
+      lower="-3.14"
+      upper="1.5078"
+      effort="30"
+      velocity="1" />
+  </joint>
+  
+  <link
+    name="finger_c_support">
+    <inertial>
+      <origin
+        xyz="0.01 -0.031374 0.024812"
+        rpy="0 0 0" />
+      <mass
+        value="0.46607" />
+      <inertia
+        ixx="0.0004388"
+        ixy="-1.3636E-21"
+        ixz="-1.4872E-21"
+        iyy="0.00019234"
+        iyz="0.00017986"
+        izz="0.00027753" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/finger_c_support.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.64706 0.61961 0.58824 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://robots/meshes/claw/finger_c_support.STL" />
+      </geometry>
+    </collision>
+  </link>
+  
+  <joint
+    name="finger_c_support_joint"
+    type="fixed">
+    <origin
+      xyz="-0.01 0.02 -0.099641"
+      rpy="0 0 0" />
+    <parent
+      link="moving_base" />
+    <child
+      link="finger_c_support" />
+    <axis
+      xyz="-1 0 0" />
+    <limit
+      lower="-3.14"
+      upper="1.5078"
+      effort="30"
+      velocity="1" />
+  </joint>
+  
+</robot>
