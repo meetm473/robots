@@ -5,9 +5,9 @@
 	<arg name="gui" default="true"/>
 	<arg name="paused" default="true"/>
 	<arg name="use_sim_time" default="true"/>
-	<arg name="world" default="$(find robots)/worlds/my_world.world"/>
+	<arg name="world" default="$(find robots)/worlds/gravity_less.world"/>
 	
-	<arg name="model_config" default="$(find robots)/launch/tri_wheeler.launch"/>
+	<arg name="model_config" default="$(find robots)/launch/claw.launch"/>
 		
 	<!-- gazebo ros launcher -->
 	<include file="$(find gazebo_ros)/launch/empty_world.launch">
