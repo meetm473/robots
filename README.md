@@ -1,5 +1,94 @@
-#Robots
+# robots
 
-This is a repository of all the files used to create different bots by the author.
+This is a **ROS package**, consisting of all the files used to create the following robots by the author:
+1. auv_d
+2. basic_arm
+3. claw
+4. prismatic_revolute_test
+5. tri_wheeler
 
-PS: To control the "tri-wheeler" bot, use the inbuilt turtle-sim-teleop.
+SolidWorks 2019 Premium has been used for modelling every robot in this repository.
+
+## About the robots
+
+### auv_d
+A basic underwater vehicle with 2-DoF, which can be maneuvered using keyboard. It is neutrally buoyant and can only exhibit **surge** and **yaw** motion on the surface of the water.
+
+#### Resources referred and used:
+* To simulate underwater conditions: [freefloating-gazebo][1].
+*  [Paper][2] released by author of *freefloating-gazebo*.
+* To find out the *center of buoyancy*, the following links were referred:
+	* [Link 1][3]
+	* [Link 2][4]
+* [T100 thrusters CAD][5] model from BlueRobotics.
+* For keyboard operation, [this][6] code snippet was referred.
+> Gazebo's own [hydrodynamics plugin][7] was not opted because the plugin uses the bounding box around mesh of collision model to calculate the buoyant force. The results were accurate only when simple shapes like *cuboid*, *sphere*, and *cylinder* were used.
+
+#### Commands
+To view the model in *RViz*:
+```
+roslaunch robots display-rviz.launch model:='$(find robots)/urdf/auv_d.xacro'
+```
+To control the bot on Gazebo:
+```
+roslaunch robots auv_d_gazebo.launch
+```
+```
+rosrun robots auv_d_key_control
+```
+
+---
+### basic_arm
+A basic arm with stationary base with a shoulder, and an elbow joint along with a gripper to grab objects. Each joint is controlled using keyboard.
+#### Resources referred and used:
+* [Mastering ROS for Robotics Programming][8]
+#### Commands
+To view the model in *RViz*:
+```
+roslaunch robots display-rviz.launch model:='$(find robots)/urdf/basic_arm.xacro'
+```
+To control the bot on Gazebo:
+```
+roslaunch robots gazebo.launch model_config:='$(find robots)/launch/basic_arm.launch'
+```
+```
+rosrun robots keyboard_control
+```
+
+---
+### claw
+A three fingered claw. The purpose of this robot is to understand how to simulate links with more than one joint in Gazebo using URDF. 
+The claw can the spawned into the Gazebo environment, but on application of gravity, it doesn't behave as expected. It's simulation is still under construction.
+#### Resources referred and used:
+* Model of the claw was taken from [here][9] and modified.
+---
+### prismatic_revolute_test
+A test model to understand the **mimic** joint feature in URDF.
+
+---
+### tri_wheeler
+First robot to understand the [SW2URDF][10] plugin and top-down approach of modelling in SolidWorks.
+#### Resources referred and used:
+* [Tutorial][11] on how to convert a SW model to URDF.
+
+## About the folders
+1. **config** - contains controller *yaml* for each robot and *RViz* configuration files.
+2. **launch** - contains the ROS launch files.
+3. **meshes** - contains *.STL* files.
+4. **multimedia** - contains images of the robots and videos of their simulation.
+5. **src** - contains *.cpp* source files.
+6. **sw_files** - contains SolidWorks files used to model the robots.
+7. **urdf** - contains URDF files.
+8. **worlds** - contains *.world* files for Gazebo.
+
+[1]:https://github.com/freefloating-gazebo/freefloating_gazebo
+[2]:https://hal.inria.fr/hal-01065812v1/document
+[3]:https://www.youtube.com/watch?v=Im8xpjPI3jA
+[4]:https://www.youtube.com/watch?v=HRJY-0Ryw6I
+[5]:https://www.google.com/search?client=ubuntu&channel=fs&q=t100+thrusters&ie=utf-8&oe=utf-8
+[6]:https://stackoverflow.com/questions/7469139/what-is-the-equivalent-to-getch-getche-in-linux
+[7]:https://stackoverflow.com/questions/7469139/what-is-the-equivalent-to-getch-getche-in-linux
+[8]:https://mastering-ros.com/
+[9]:https://grabcad.com/library/gripper-148
+[10]:http://wiki.ros.org/sw_urdf_exporter
+[11]:https://blogs.solidworks.com/teacher/wp-content/uploads/sites/3/WPI-Robotics-SolidWorks-to-Gazebo.pdf
